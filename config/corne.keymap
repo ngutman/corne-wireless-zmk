@@ -9,13 +9,13 @@
 // Layer Definitions
 #define COLEMAK 0
 #define QWERTY 1
-#define LAYERS 3
-#define NAV 4
-#define MOUSE 5
-#define MEDIA 6
-#define NUM 7
-#define SYM 8
-#define FN 9
+#define LAYERS 2
+#define NAV 3
+#define MOUSE 4
+// #define MEDIA 6
+#define NUM 5
+#define SYM 6
+#define FN 7
 
 // Behavior configuration
 &mt {
@@ -39,6 +39,23 @@
         compatible = "zmk,keymap";
 
         colemak {
+        display-name = "COLEMAK";
+    // -----------------------------------------------------------------------------------------------------------------------------
+    // |        |   Q    |   W    |     E     |     R     |     T     | # |     Y     |     U    |    I    |    O   |   P    |     |
+    // | LAYERS | A/LGUI | S/LALT |  D/LCTRL  |  F/LSHFT  |     G     | # |     H     | J/LSHFT  | K/LCTRR | L/LALT | ;/LGUI |     |
+    // |        |   Z    | X/RALT |     C     |     V     |     B     | # |     N     |     M    |    ,    | ./RALT |   /    |     |
+    //                            | ESC/MEDIA | SPACE/NAV | TAB/MOUSE | # | ENTER/SYM | BSPC/NUM | DEL/FN  |
+    
+                bindings = <
+    &trans      &kp Q       &kp W       &kp F          &kp P          &kp B                &kp J          &kp L         &kp U          &kp Y         &kp SQT     &trans
+    &mo LAYERS  &mt LCTRL A &mt LALT R  &mt LGUI S     &mt LSHFT T    &kp G                &kp M          &mt LSHFT N   &mt LGUI E     &mt LALT I    &mt LCTRL O &trans
+    &trans      &kp Z       &mt RALT X  &kp C          &kp D          &kp V                &kp K          &kp H         &kp CMMA       &mt RALT DOT  &kp FSLH    &trans
+                                        &lt NUM DEL    &lt NAV BSPC   &u_gresc             &kp ENTER      &lt SYM SPACE &lt MOUSE TAB
+                >;
+            };
+            
+        qwerty {
+        display-name = "QWERTY";
 // -----------------------------------------------------------------------------------------------------------------------------
 // |        |   Q    |   W    |     F     |     P     |     B     | # |     J     |    L     |    U    |    Y   |   '    |     |
 // | LAYERS | A/LGUI | R/LALT |  S/LCTRL  |  T/LSHFT  |     G     | # |     M     | N/LSHFT  | E/LCTRL | I/LALT | O/LGUI |     |
@@ -53,22 +70,8 @@
             >;
         };
 
-        qwerty {
-// -----------------------------------------------------------------------------------------------------------------------------
-// |        |   Q    |   W    |     E     |     R     |     T     | # |     Y     |     U    |    I    |    O   |   P    |     |
-// | LAYERS | A/LGUI | S/LALT |  D/LCTRL  |  F/LSHFT  |     G     | # |     H     | J/LSHFT  | K/LCTRR | L/LALT | ;/LGUI |     |
-// |        |   Z    | X/RALT |     C     |     V     |     B     | # |     N     |     M    |    ,    | ./RALT |   /    |     |
-//                            | ESC/MEDIA | SPACE/NAV | TAB/MOUSE | # | ENTER/SYM | BSPC/NUM | DEL/FN  |
-
-            bindings = <
-&trans      &kp Q       &kp W       &kp F          &kp P          &kp B                &kp J          &kp L         &kp U          &kp Y         &kp SQT     &trans
-&mo LAYERS  &mt LCTRL A &mt LALT R  &mt LGUI S     &mt LSHFT T    &kp G                &kp M          &mt LSHFT N   &mt LGUI E     &mt LALT I    &mt LCTRL O &trans
-&trans      &kp Z       &mt RALT X  &kp C          &kp D          &kp V                &kp K          &kp H         &kp CMMA       &mt RALT DOT  &kp FSLH    &trans
-                                    &lt NUM DEL    &lt NAV BSPC   &u_gresc             &kp ENTER      &lt SYM SPACE &lt MOUSE TAB
-            >;
-        };
-
         layers {
+            display-name = "LAYERS";
 // ---------------------------------------------------------------------------------------------
 // |      |     |     |     |     |     | # |     |     |         |                |     |     |
 // | HELD |     |     |     |     |     | # |     |     | COLEMAK |                |     |     |
@@ -85,6 +88,7 @@
 
 
         navigation {
+            display-name = "NAV";
 // -------------------------------------------------------------------------------------------
 // |     |      |      |       |       |     | # | REDO  | CUT  | COPY | PASTE | UNDO  |     |
 // |     | LGUI | LALT | LCTRL | LSHFT |     | # | CAPS  | LEFT | DOWN | UP    | RIGHT |     |
@@ -103,6 +107,7 @@
 // Add mouse keys when implemented in ZMK
 
         mouse {
+            display-name = "MOUSE";
 // ------------------------------------------------------------------------------------
 // |     |      |      |       |       |      | # |     |     |     |     |     |     |
 // |     | LGUI | LALT | LCTRL | LSHFT |      | # |     |     |     |     |     |     |
@@ -117,22 +122,23 @@
             >;
         };
 
-        media {
-// -----------------------------------------------------------------------------------------------------
-// |     |      |      |       |       |      | # | BOOTLOAD | EP_OFF | BR_D   | BR_U   | EP_ON  |     |
-// |     | LGUI | LALT | LCTRL | LSHFT |      | # | RESET    | PREV   | VOL_D  | VOL_U  | NEXT   |     |
-// |     |      | RALT |       |       |      | # | OUT_BLE  | BT_0   | BT_PRV | BT_NXT | BT_CLR |     |
-//                     | HELD  |       |      | # | STOP     | PLAY   | MUTE   |
+//         media {
+// // -----------------------------------------------------------------------------------------------------
+// // |     |      |      |       |       |      | # | BOOTLOAD | EP_OFF | BR_D   | BR_U   | EP_ON  |     |
+// // |     | LGUI | LALT | LCTRL | LSHFT |      | # | RESET    | PREV   | VOL_D  | VOL_U  | NEXT   |     |
+// // |     |      | RALT |       |       |      | # | OUT_BLE  | BT_0   | BT_PRV | BT_NXT | BT_CLR |     |
+// //                     | HELD  |       |      | # | STOP     | PLAY   | MUTE   |
 
-            bindings = <
-&trans  &trans    &trans    &trans     &trans     &trans        &bootloader   &ext_power EP_OFF  &cp C_BRI_DN  &cp C_BRI_UP  &ext_power EP_ON  &trans
-&trans  &kp LGUI  &kp LALT  &kp LCTRL  &kp LSHFT  &trans        &reset        &cp C_PREV         &cp C_VOL_DN  &cp C_VOL_UP  &cp C_NEXT        &trans
-&trans  &trans    &kp RALT  &trans     &trans     &trans        &out OUT_BLE  &bt BT_SEL 0       &bt BT_PRV    &bt BT_NXT    &bt BT_CLR        &trans
-                            &trans     &trans     &trans        &cp C_STOP    &cp C_PLAY         &cp C_MUTE
-            >;
-        };
+//             bindings = <
+// &trans  &trans    &trans    &trans     &trans     &trans        &bootloader   &ext_power EP_OFF  &cp C_BRI_DN  &cp C_BRI_UP  &ext_power EP_ON  &trans
+// &trans  &kp LGUI  &kp LALT  &kp LCTRL  &kp LSHFT  &trans        &reset        &cp C_PREV         &cp C_VOL_DN  &cp C_VOL_UP  &cp C_NEXT        &trans
+// &trans  &trans    &kp RALT  &trans     &trans     &trans        &out OUT_BLE  &bt BT_SEL 0       &bt BT_PRV    &bt BT_NXT    &bt BT_CLR        &trans
+//                             &trans     &trans     &trans        &cp C_STOP    &cp C_PLAY         &cp C_MUTE
+//             >;
+//         };
 
         numbers {
+            display-name = "NUM";
 // --------------------------------------------------------------------------------------
 // |      |      |      |      |      |      |      |  [  |  7  |  8  |  9  |  ]  |     |  
 // |      |LSHFT |LCTRL |LALT  |LGUI  |      |      |  ;  |  4  |  5  |  6  |  =  |     |
@@ -149,21 +155,23 @@
         };
 
         symbols {
-            // ----------------------------------------------------------------------------------------------
-            // |     |  `  |  <  |  >  |  "  |  .   |    |      |   &   |   `   |   [   |   ]  |  %   |     |
-            // |     |  !  |  -  |  +  |  =  |  #   |    |      |   |   |   :   |   (   |   )  |  ?   |     |
-            // |     |  ^  |  /  |  *  |  \  |  ../ |    |      |   ~   |   $   |   {   |   }  |  @   |     |
-            // |                 |  <> |  // |  _   |    | HELD |       |       |                           |
-            // ----------------------------------------------------------------------------------------------
-                        bindings = <
-    &trans        &kp GRAVE    &kp LT        &kp GT       &kp DQT      &kp DOT                      &kp AMPS     &kp GRAVE     &kp LBKT      &kp RBKT     &kp PERC      &trans
-    &trans        &kp EXCL     &kp MINUS     &kp PLUS     &kp EQUAL     &kp HASH                    &kp PIPE     &kp COLON     &kp LPAR     &kp RPAR      &kp QMARK     &trans
-    &trans        &kp CIRC     &kp FSLH      &kp ASTRK    &kp BSLH      &macro_dot_dot_slash        &kp TILDE    &kp DLLR      &kp LCBR     &kp RCBR      &kp AT        &trans
+            display-name = "SYM";
+// ----------------------------------------------------------------------------------------------
+// |     |  `  |  <  |  >  |  "  |  .   |    |      |   &   |   `   |   [   |   ]  |  %   |     |
+// |     |  !  |  -  |  +  |  =  |  #   |    |      |   |   |   :   |   (   |   )  |  ?   |     |
+// |     |  ^  |  /  |  *  |  \  |  ../ |    |      |   ~   |   $   |   {   |   }  |  @   |     |
+// |                 |  <> |  // |  _   |    | HELD |       |       |                           |
+// ----------------------------------------------------------------------------------------------
+            bindings = <
+    &trans        &kp GRAVE    &kp LT        &kp GT        &kp DQT       &kp DOT                     &kp AMPS     &kp GRAVE     &kp LBKT     &kp RBKT      &kp PRCNT     &trans 
+    &trans        &kp EXCL     &kp MINUS     &kp PLUS      &kp EQUAL     &kp HASH                    &kp PIPE     &kp COLON     &kp LPAR     &kp RPAR      &kp QMARK     &trans 
+    &trans        &kp CARET    &kp FSLH      &kp ASTRK     &kp BSLH      &macro_dot_dot_slash        &kp TILDE    &kp DLLR      &kp LBRC     &kp RBRC      &kp AT        &trans
                     &macro_lt_gt   &macro_slash_slash   &kp UNDERSCORE                                      &trans      &trans    &trans
                         >;
-                    };
+        };
 
         function {
+            display-name = "FN";
 // ------------------------------------------------------------------------------------------
 // |     |  F12 |  F7  |  F8  |  F9   | PSCRN | # |     |       |       |      |      |     |
 // |     |  F11 |  F4  |  F5  |  F6   | SLCK  | # |     | LSHFT | LCTRL | LALT | LGUI |     |

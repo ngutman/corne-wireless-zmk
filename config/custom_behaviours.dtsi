@@ -1,3 +1,5 @@
+#define U_TAPPING_TERM 200
+
 / {
     behaviors {
       u_gresc: u_gresc {
@@ -15,7 +17,7 @@
         bindings = <&mo>, <&u_gresc>;
       };
       // Macro for "../" (three characters: ., ., /)
-      macro_dot_dot_slash: macro {
+      macro_dot_dot_slash: macro_dot_dot_slash {
           label = "DOT_DOT_SLASH";
           compatible = "zmk,behavior-macro";
           #binding-cells = <0>;
@@ -27,7 +29,7 @@
           >;
       };
       // Macro for "<>" (two characters: <, >)
-      macro_lt_gt: macro {
+      macro_lt_gt: macro_lt_gt {
           label = "LT_GT";
           compatible = "zmk,behavior-macro";
           #binding-cells = <0>;
@@ -38,7 +40,7 @@
       };
 
       // Macro for "//" (two characters: /, /)
-      macro_slash_slash: macro {
+      macro_slash_slash: macro_slash_slash {
           label = "SLASH_SLASH";
           compatible = "zmk,behavior-macro";
           #binding-cells = <0>;
