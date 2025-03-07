@@ -1,0 +1,52 @@
+/ {
+    behaviors {
+      u_gresc: u_gresc {
+        compatible = "zmk,behavior-mod-morph";
+        #binding-cells = <0>;
+        bindings = <&kp ESC>, <&kp GRAVE>;
+        mods = <(MOD_LGUI|MOD_LSFT|MOD_RGUI|MOD_RSFT)>;
+        keep-mods = <(MOD_LGUI|MOD_LSFT)>;
+      };
+      u_lt_gresc: u_lt_gresc {
+        compatible = "zmk,behavior-hold-tap";
+        #binding-cells = <2>;
+        tapping-term-ms = <U_TAPPING_TERM>;
+        flavor = "tap-preferred";
+        bindings = <&mo>, <&u_gresc>;
+      };
+      // Macro for "../" (three characters: ., ., /)
+      macro_dot_dot_slash: macro {
+          label = "DOT_DOT_SLASH";
+          compatible = "zmk,behavior-macro";
+          #binding-cells = <0>;
+          // Each &kp ... sends one character
+          bindings = <
+              &kp DOT
+              &kp DOT
+              &kp FSLH
+          >;
+      };
+      // Macro for "<>" (two characters: <, >)
+      macro_lt_gt: macro {
+          label = "LT_GT";
+          compatible = "zmk,behavior-macro";
+          #binding-cells = <0>;
+          bindings = <
+              &kp LT
+              &kp GT
+          >;
+      };
+
+      // Macro for "//" (two characters: /, /)
+      macro_slash_slash: macro {
+          label = "SLASH_SLASH";
+          compatible = "zmk,behavior-macro";
+          #binding-cells = <0>;
+          bindings = <
+              &kp FSLH
+              &kp FSLH
+          >;
+      };
+    };
+  };
+  
