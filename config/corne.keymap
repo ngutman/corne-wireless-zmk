@@ -73,16 +73,16 @@
         layers {
             display-name = "LAYERS";
 // ---------------------------------------------------------------------------------------------
-// |      |     |     |     |     |     | # |     |     |         |                |     |     |
-// | HELD |     |     |     |     |     | # |     |     | COLEMAK |                |     |     |
-// |      |     |     |     |     |     | # |     |     | QWERTY  |                |     |     |
-//                    |     |     |     | # |     |     |         |
+// |      |     |     |     |     | BOOT | # | BOOT |     |         |                |     |     |
+// | HELD |     |     |     |     |      | # |      |     | COLEMAK |                |     |     |
+// |      |     |     |     |     |      | # |      |     | QWERTY  |                |     |     |
+//                    |     |     |      | # |      |     |         |
 
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans        &trans  &trans  &trans       &trans              &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans        &trans  &trans  &to COLEMAK  &trans              &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans        &trans  &trans  &to QWERTY   &trans              &trans  &trans
-                        &trans  &trans  &trans        &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &bootloader_protect        &bootloader_protect  &trans  &trans       &trans              &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans                     &trans               &trans  &to COLEMAK  &trans              &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans                     &trans               &trans  &to QWERTY   &trans              &trans  &trans
+                        &trans  &trans  &trans                     &trans  &trans  &trans
             >;
         };
 
@@ -90,15 +90,15 @@
         navigation {
             display-name = "NAV";
 // -------------------------------------------------------------------------------------------
-// |     |      |      |       |       |     | # | REDO  | CUT  | COPY | PASTE | UNDO  |     |
-// |     | LGUI | LALT | LCTRL | LSHFT |     | # | CAPS  | LEFT | DOWN | UP    | RIGHT |     |
-// |     |      | RALT |       |       |     | # | INS   | HOME | PGDN | PGUP  | END   |     |
+// |     |      |      |       |       |     | # | COPY  | INS  | REDO | CAPS  | UNDO  |     |
+// |     | LGUI | LALT | LCTRL | LSHFT |     | # | PASTE | LEFT | DOWN | UP    | RIGHT |     |
+// |     |      | RALT |       |       |     | # | CUT   | HOME | PGDN | PGUP  | END   |     |
 //                     |       | HELD  |     | # | ENTER | BSPC | DEL  |
 
             bindings = <
-&trans  &trans    &trans    &trans     &trans     &trans        &kp K_REDO          &kp K_CUT  &kp K_COPY  &kp K_PASTE  &kp K_UNDO  &trans
-&trans  &kp LGUI  &kp LALT  &kp LCTRL  &kp LSHFT  &trans        &kp CAPSLOCK        &kp LEFT   &kp DOWN    &kp UP       &kp RIGHT   &trans
-&trans  &trans    &kp RALT  &trans     &trans     &trans        &kp INS             &kp HOME   &kp PG_DN   &kp PG_UP    &kp END     &trans
+&trans  &trans    &trans    &trans     &trans     &trans        &kp K_COPY          &kp INS    &kp K_REDO  &caps_word   &kp K_UNDO  &trans
+&trans  &kp LGUI  &kp LALT  &kp LCTRL  &kp LSHFT  &trans        &kp K_PASTE         &kp LEFT   &kp DOWN    &kp UP       &kp RIGHT   &trans
+&trans  &trans    &kp RALT  &trans     &trans     &trans        &kp K_CUT           &kp HOME   &kp PG_DN   &kp PG_UP    &kp END     &trans
                             &trans     &trans     &trans        &kp LC(LS(TAB))     &kp LC(TAB)   &kp DEL
             >;
         };

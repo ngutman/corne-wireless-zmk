@@ -50,36 +50,11 @@
           >;
       };
 
-      // macro_ctrl_tab: macro_ctrl_tab {
-      //     label = "CTRL_TAB";
-      //     compatible = "zmk,behavior-macro";
-      //     #binding-cells = <0>;
-      //     // The bindings below send a Ctrl press, then Tab, then release Ctrl.
-      //     // Depending on your needs, you might need to adjust the timing.
-      //     bindings = <
-      //         &kp LCTL  // Sends Left Control down
-      //         &kp TAB   // Sends Tab
-      //         // The behavior automatically releases keys unless configured otherwise.
-      //     >;
-      //     // Use a release-mode that holds the keys until the macro finishes
-      //     release-mode = "hold-then-release";
-      // };
-
-      // macro_ctrl_shift_tab: macro_ctrl_shift_tab {
-      //     label = "CTRL_TAB";
-      //     compatible = "zmk,behavior-macro";
-      //     #binding-cells = <0>;
-      //     // The bindings below send a Ctrl press, then Tab, then release Ctrl.
-      //     // Depending on your needs, you might need to adjust the timing.
-      //     bindings = <
-      //         &kp LCTL  // Sends Left Control down
-      //         &kp LSFT  // Sends Left Control down
-      //         &kp TAB   // Sends Tab
-      //         // The behavior automatically releases keys unless configured otherwise.
-      //     >;
-      //     // Use a release-mode that holds the keys until the macro finishes
-      //     release-mode = "hold-then-release";
-      // };
+      bootloader_protect: bootloader_protect {
+          compatible = "zmk,behavior-tap-dance";
+          #binding-cells = <0>;
+          tapping-term-ms = <U_TAPPING_TERM>;
+          bindings = <&none>, <&bootloader>;
+      };
     };
   };
-  
